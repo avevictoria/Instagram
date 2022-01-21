@@ -11,6 +11,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let home = HomeViewController()
         let explore = ExploreViewController()
         let camera = CameraViewController()
