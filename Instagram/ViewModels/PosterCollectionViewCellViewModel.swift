@@ -8,6 +8,6 @@
 import Foundation
 
 struct PosterCollectionViewCellViewModel {
-    let user: String
+    let username: String
     let profilePictureURL: URL
 }
