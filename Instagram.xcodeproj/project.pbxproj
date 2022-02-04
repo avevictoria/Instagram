@@ -34,6 +34,8 @@
 		7508BB9F2799EB2E00735A2D /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7508BB9E2799EB2E00735A2D /* AnalyticsManager.swift */; };
 		7508BBA12799EB3F00735A2D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7508BBA02799EB3F00735A2D /* HapticManager.swift */; };
 		7508BBA32799EDC900735A2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7508BBA22799EDC900735A2D /* GoogleService-Info.plist */; };
+		75116A4627AD434800BA0086 /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75116A4527AD434800BA0086 /* PostEditViewController.swift */; };
+		75116A4827AD4B6D00BA0086 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75116A4727AD4B6D00BA0086 /* PhotoCollectionViewCell.swift */; };
 		751A96FD279ED0220021F4C5 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A96FC279ED0220021F4C5 /* IGTextField.swift */; };
 		751A96FF27A40B4D0021F4C5 /* PosterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A96FE27A40B4D0021F4C5 /* PosterCollectionViewCellViewModel.swift */; };
 		751A970127A40B9A0021F4C5 /* PostCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A970027A40B9A0021F4C5 /* PostCollectionViewCellViewModel.swift */; };
@@ -83,6 +85,8 @@
 		7508BB9E2799EB2E00735A2D /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		7508BBA02799EB3F00735A2D /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		7508BBA22799EDC900735A2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75116A4527AD434800BA0086 /* PostEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewController.swift; sourceTree = "<group>"; };
+		75116A4727AD4B6D00BA0086 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		751A96FC279ED0220021F4C5 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
 		751A96FE27A40B4D0021F4C5 /* PosterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		751A970027A40B9A0021F4C5 /* PostCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				7508BB692799A4B200735A2D /* LaunchScreen.storyboard */,
 				75EC4812279AE753007FF04A /* SignInHeaderView.swift */,
 				751A96FC279ED0220021F4C5 /* IGTextField.swift */,
+				75116A4727AD4B6D00BA0086 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				7508BB8A2799EA5000735A2D /* ListViewController.swift */,
 				7508BB8C2799EA5D00735A2D /* PostViewController.swift */,
 				7508BB8E2799EA6B00735A2D /* SettingsViewController.swift */,
+				75116A4527AD434800BA0086 /* PostEditViewController.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				751A970527A40C220021F4C5 /* PostLikesCollectionViewCellViewModel.swift in Sources */,
 				7508BB9B2799EB0300735A2D /* DatabaseManager.swift in Sources */,
 				7508BB952799EAC500735A2D /* Relationship.swift in Sources */,
+				75116A4627AD434800BA0086 /* PostEditViewController.swift in Sources */,
 				7508BB932799EAAD00735A2D /* Post.swift in Sources */,
 				751A970727A40C8F0021F4C5 /* PostCaptionCollectionViewCellViewModel.swift in Sources */,
 				7508BBA12799EB3F00735A2D /* HapticManager.swift in Sources */,
@@ -420,6 +427,7 @@
 				75EC4815279AE8E2007FF04A /* Extensions.swift in Sources */,
 				751A971827A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift in Sources */,
 				7508BB802799E5E500735A2D /* ProfileViewController.swift in Sources */,
+				75116A4827AD4B6D00BA0086 /* PhotoCollectionViewCell.swift in Sources */,
 				7508BB852799E9D700735A2D /* SignInViewController.swift in Sources */,
 				751A970E27A421DE0021F4C5 /* PosterCollectionViewCell.swift in Sources */,
 				7508BB5F2799A4AF00735A2D /* AppDelegate.swift in Sources */,

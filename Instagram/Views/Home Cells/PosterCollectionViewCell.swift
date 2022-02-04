@@ -20,7 +20,7 @@ final class PosterCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let imageView  = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
