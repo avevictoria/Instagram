@@ -50,6 +50,7 @@
 		751A971427A423AE0021F4C5 /* PostLikesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A971327A423AE0021F4C5 /* PostLikesCollectionViewCell.swift */; };
 		751A971627A423BF0021F4C5 /* PostCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A971527A423BF0021F4C5 /* PostCaptionCollectionViewCell.swift */; };
 		751A971827A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A971727A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift */; };
+		75C5729027B6648400F2F6E4 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5728F27B6648400F2F6E4 /* SearchResultsViewController.swift */; };
 		75EC4813279AE753007FF04A /* SignInHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EC4812279AE753007FF04A /* SignInHeaderView.swift */; };
 		75EC4815279AE8E2007FF04A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EC4814279AE8E2007FF04A /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		751A971327A423AE0021F4C5 /* PostLikesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikesCollectionViewCell.swift; sourceTree = "<group>"; };
 		751A971527A423BF0021F4C5 /* PostCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		751A971727A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDateTimeCollectionViewCell.swift; sourceTree = "<group>"; };
+		75C5728F27B6648400F2F6E4 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		75EC4812279AE753007FF04A /* SignInHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInHeaderView.swift; sourceTree = "<group>"; };
 		75EC4814279AE8E2007FF04A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9C62943ACF147181D9350C2F /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				7508BB8C2799EA5D00735A2D /* PostViewController.swift */,
 				7508BB8E2799EA6B00735A2D /* SettingsViewController.swift */,
 				75116A4527AD434800BA0086 /* PostEditViewController.swift */,
+				75C5728F27B6648400F2F6E4 /* SearchResultsViewController.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				7508BB912799EAA100735A2D /* User.swift in Sources */,
 				7508BB632799A4AF00735A2D /* HomeViewController.swift in Sources */,
 				751A970927A40CC70021F4C5 /* PostDateTimeCollectionViewCellViewModel.swift in Sources */,
+				75C5729027B6648400F2F6E4 /* SearchResultsViewController.swift in Sources */,
 				75EC4813279AE753007FF04A /* SignInHeaderView.swift in Sources */,
 				7508BB8F2799EA6B00735A2D /* SettingsViewController.swift in Sources */,
 				751A96FD279ED0220021F4C5 /* IGTextField.swift in Sources */,
