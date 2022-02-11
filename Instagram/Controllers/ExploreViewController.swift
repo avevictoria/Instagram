@@ -75,6 +75,8 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
         return collectionView
     }()
     
+    private var posts = [Post]()
+    
     //MARK: - Init
 
     override func viewDidLoad() {
@@ -88,10 +90,19 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        fetchData()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+    }
+    private func fetchData() {
+        DatabaseManager.shared.explorePosts { [weak self] posts in
+            DispatchQueue.main.async {
+                self?.posts = posts
+                self?.collectionView.reloadData()
+            }
+        }
     }
     func updateSearchResults(for searchController: UISearchController) {
         guard let resultsVC = searchController.searchResultsController as? SearchResultsViewController,
@@ -110,7 +121,7 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
 
 extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,11 +131,17 @@ extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataS
         ) as? PhotoCollectionViewCell else {
             fatalError()
         }
-        cell.configure(with: UIImage(named: "test"))
+        let model = posts[indexPath.row]
+        cell.configure(with: URL(string: model.postUrlString))
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let post = posts[indexPath.row]
+        let vc  = PostViewController(post: post)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ExploreViewController: SearchResultsViewControllerDelegate {
