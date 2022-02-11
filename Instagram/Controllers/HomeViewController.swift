@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     private var collectionView: UICollectionView?
     
     private var viewModels = [[HomeFeedCellType]]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Instagram"
@@ -27,36 +27,86 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     private func fetchPost() {
-//        mock data
-        let postData: [HomeFeedCellType] = [
-            .poster(
-                viewModel: PosterCollectionViewCellViewModel(
-                    username: "vika",
-                    profilePictureURL: URL(string: "https://images.unsplash.com/photo-1568409226229-ae13c034d136?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80")!
-                )
-            ),
-            .post(
-                viewModel: PostCollectionViewCellViewModel(
-                    postUrl: URL(string: "https://images.unsplash.com/photo-1564698010692-0fe284aae806?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80")!
-                )
-            ),
-            .actions(viewModel: PostActionCollectionViewCellViewModel(isLiked: true)),
-            .likeCount(viewModel: PostLikesCollectionViewCellViewModel(likers: ["kanyewest"])),
-            .caption(viewModel: PostCaptionCollectionViewCellViewModel(username: "vika", caption: "this is 1st post")),
-            .timestamp(viewModel: PostDateTimeCollectionViewCellViewModel(date: Date()))
-            
-        ]
-        
-        viewModels.append(postData)
-        collectionView?.reloadData()
+        //        mock data
+        guard let username = UserDefaults.standard.string(forKey: "username") else {
+            return
+        }
+        DatabaseManager.shared.posts(for: username) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let posts):
+                    let group = DispatchGroup()
+                    
+                    posts.forEach { model in
+                        group.enter()
+                        self?.createViewModel(
+                            model: model,
+                            username: username ,
+                            completion: { success in
+                                defer {
+                                    group.leave()
+                                }
+                                if !success {
+                                    print("failed to create VM")
+                                }
+                            }
+                        )
+                    }
+                    group.notify(queue: .main) {
+                        self?.collectionView?.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
-
     
-//    CollectionView
+    private func createViewModel(
+        model: Post,
+        username: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+       
+        StorageManager.shared.profilePictureURL(for: username) { [weak self] profilePictureURL in
+            guard let postUrl = URL(string: model.postUrlString),
+                  let profilePhotoUrl = profilePictureURL else {
+                      return
+                  }
+            
+            let postData: [HomeFeedCellType] = [
+                .poster(
+                    viewModel: PosterCollectionViewCellViewModel(
+                        username: username,
+                        profilePictureURL: profilePhotoUrl
+                        )
+                ),
+                .post(
+                    viewModel: PostCollectionViewCellViewModel(
+                        postUrl: postUrl
+                    )
+                ),
+                .actions(viewModel: PostActionCollectionViewCellViewModel(isLiked: false)),
+                .likeCount(viewModel: PostLikesCollectionViewCellViewModel(likers: [])),
+                .caption(viewModel: PostCaptionCollectionViewCellViewModel(username: username, caption: model.caption)),
+                .timestamp(
+                    viewModel: PostDateTimeCollectionViewCellViewModel(
+                        date: DateFormatter.formatter.date(from: model.postedDate) ?? Date()
+                    )
+                )
+                
+            ]
+            
+            self?.viewModels.append(postData)
+            completion(true)
+        }
+    }
+    
+    //    CollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModels.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModels[section].count
     }
@@ -64,7 +114,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cellType = viewModels[indexPath.section][indexPath.row]
-    
+        
         switch cellType {
             
         case .poster(let viewModel):
@@ -133,10 +183,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 extension HomeViewController: PostActionsCollectionViewCellDelegate {
     func PostActionsCollectionViewCellUpdateLike(_ cell: PostActionsCollectionViewCell, isLiked: Bool) {
         //        call DB to update like state
-
+        
     }
     func PostActionsCollectionViewCellDidTapComment(_ cell: PostActionsCollectionViewCell) {
-
+        
         let vc = PostViewController()
         vc.title = "Post"
         navigationController?.pushViewController(vc, animated: true)
@@ -150,7 +200,7 @@ extension HomeViewController: PostActionsCollectionViewCellDelegate {
 
 extension HomeViewController: PostCollectionViewCellDelegate {
     func PostCollectionViewCellDidTapLike(_ cell: PostCollectionViewCell) {
-
+        
     }
 }
 
@@ -180,7 +230,7 @@ extension HomeViewController: PosterCollectionViewCellDelegate {
             
         }))
         sheet.addAction(UIAlertAction(title: "Report Post", style: .destructive, handler: { _ in
-                                      
+            
         }))
         present(sheet, animated: true)
     }
@@ -198,8 +248,8 @@ extension HomeViewController {
             frame: .zero,
             collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { index, _ ->
                 NSCollectionLayoutSection? in
-    //            Item
-    //            Cell for the poster
+                //            Item
+                //            Cell for the poster
                 let posterItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -207,7 +257,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Cell for the post
+                //            Cell for the post
                 let postItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -215,7 +265,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Actions cell
+                //            Actions cell
                 let actionItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -223,7 +273,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Like count cell
+                //            Like count cell
                 let likeCountItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -231,7 +281,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Captions cell
+                //            Captions cell
                 let captionItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -239,7 +289,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Timestamp cell
+                //            Timestamp cell
                 let timestampItem = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -247,7 +297,7 @@ extension HomeViewController {
                     )
                 )
                 
-    //            Group
+                //            Group
                 let group = NSCollectionLayoutGroup.vertical(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -263,7 +313,7 @@ extension HomeViewController {
                     ]
                 )
                 
-    //            Section
+                //            Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 0, bottom: 10, trailing: 0)
                 return section
@@ -276,7 +326,7 @@ extension HomeViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        
         collectionView.register(
             PosterCollectionViewCell.self,
             forCellWithReuseIdentifier: PosterCollectionViewCell.identifier
