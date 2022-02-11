@@ -13,6 +13,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.tintColor = .label
         return imageView
@@ -38,5 +39,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     func configure(with image: UIImage?) {
         imageView.image = image
+    }
+    func configure(with url: URL?) {
+        imageView.sd_setImage(with: url, completed: nil)
     }
 }
