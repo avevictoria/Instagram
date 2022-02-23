@@ -29,6 +29,7 @@ class LikeNotificationTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     private let label: UILabel = {
@@ -57,12 +58,13 @@ class LikeNotificationTableViewCell: UITableViewCell {
         contentView.addSubview(profilePictureImageView)
         contentView.addSubview(postImageView)
         
-        postImageView.isUserInteractionEnabled = true
-        let tap = UIGestureRecognizer(target: self, action: #selector(didTapPost))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPost))
         postImageView.addGestureRecognizer(tap)
+        
     }
     
     @objc func didTapPost() {
+        print("tapped")
         guard let vm = viewModel else {
             return
         }

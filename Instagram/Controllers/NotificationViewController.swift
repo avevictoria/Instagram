@@ -174,7 +174,6 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                 fatalError()
             }
             cell.configure(with: viewModel)
-            print(viewModel)
             cell.delegate = self
             return cell
         }
@@ -198,7 +197,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         
 //        FIXme: update function to use username ( the one below is for an email)
         
-        DatabaseManager.shared.findUser(with: username) { [weak self] user in
+        DatabaseManager.shared.findUser(username: username) { [weak self] user in
             guard let user = user else {
                 return
             }
@@ -257,17 +256,27 @@ extension NotificationViewController: LikeNotificationTableViewCellDelegate, Com
         }
         
         let username = viewModel.username
-//        DatabaseManager.shared.updateRelationship(
-//            state: isFollowing ? .follow : .unfollow,
-//            for: username
-//        ) { success in
-//
-//        }
+        DatabaseManager.shared.updateRelationship(
+            state: isFollowing ? .follow : .unfollow,
+            for: username
+        ) { [weak self] success in
+            if  !success {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(
+                        title: "Oops",
+                        message: "Unable to perform action.",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss",
+                                                  style: .cancel,
+                                                  handler: nil))
+                    self?.present(alert, animated: true)
+                }
+            }
+        }
     }
     
     func openPost(with index: Int, username: String) {
         print(index)
-        
         guard index < models.count else {
             return
         }
@@ -276,6 +285,21 @@ extension NotificationViewController: LikeNotificationTableViewCellDelegate, Com
         let username = username
         guard let postID = model.postId else {
             return
+        }
+        
+//        Find post by id from target user
+        DatabaseManager.shared.getPost(with: postID, from: username) { [weak self] post in
+            DispatchQueue.main.async {
+                guard let post = post else {
+                    let alert = UIAlertController(title: "Oops", message: "We are unable to open this post", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self?.present(alert, animated: true)
+                    return
+                }
+                
+                let vc = PostViewController(post: post)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

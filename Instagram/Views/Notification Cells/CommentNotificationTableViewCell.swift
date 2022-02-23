@@ -29,6 +29,7 @@ class CommentNotificationTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     private let label: UILabel = {
@@ -56,8 +57,7 @@ class CommentNotificationTableViewCell: UITableViewCell {
         contentView.addSubview(dateLabel)
         contentView.addSubview(profilePictureImageView)
         contentView.addSubview(postImageView)
-        postImageView.isUserInteractionEnabled = true
-        let tap = UIGestureRecognizer(target: self, action: #selector(didTapPost))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPost))
         postImageView.addGestureRecognizer(tap)
     }
     
@@ -110,3 +110,4 @@ class CommentNotificationTableViewCell: UITableViewCell {
         dateLabel.text = viewModel.date
     }
 }
+
