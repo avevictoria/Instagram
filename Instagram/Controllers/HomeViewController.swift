@@ -221,7 +221,7 @@ extension HomeViewController: PostCaptionCollectionViewCellDelegate {
 }
 
 extension HomeViewController: PosterCollectionViewCellDelegate {
-    func PosterCollectionViewCellDidTapMore(_ cell: PosterCollectionViewCell) {
+    func posterCollectionViewCellDidTapMore(_ cell: PosterCollectionViewCell) {
         let sheet = UIAlertController(title: "Post Actions",
                                       message: nil,
                                       preferredStyle: .actionSheet)
@@ -234,7 +234,7 @@ extension HomeViewController: PosterCollectionViewCellDelegate {
         }))
         present(sheet, animated: true)
     }
-    func PosterCollectionViewCellDidTapUserName(_ cell: PosterCollectionViewCell) {
+    func posterCollectionViewCellDidTapUserName(_ cell: PosterCollectionViewCell) {
         let vc = ProfileViewController(user: User(username: "vika", email: "vika@mail.com"))
         navigationController?.pushViewController(vc, animated: true)
     }

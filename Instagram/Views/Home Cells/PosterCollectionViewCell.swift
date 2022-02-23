@@ -9,8 +9,8 @@ import SDWebImage
 import UIKit
 
 protocol PosterCollectionViewCellDelegate: AnyObject {
-    func PosterCollectionViewCellDidTapMore(_ cell: PosterCollectionViewCell)
-    func PosterCollectionViewCellDidTapUserName(_ cell: PosterCollectionViewCell)
+    func posterCollectionViewCellDidTapMore(_ cell: PosterCollectionViewCell)
+    func posterCollectionViewCellDidTapUserName(_ cell: PosterCollectionViewCell)
 }
 
 final class PosterCollectionViewCell: UICollectionViewCell {
@@ -60,11 +60,11 @@ final class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func didTapMore() {
-        delegate?.PosterCollectionViewCellDidTapMore(self)
+        delegate?.posterCollectionViewCellDidTapMore(self)
     }
     
     @objc func didTapUsername() {
-        delegate?.PosterCollectionViewCellDidTapUserName(self)
+        delegate?.posterCollectionViewCellDidTapUserName(self)
     }
     
     override func layoutSubviews() {

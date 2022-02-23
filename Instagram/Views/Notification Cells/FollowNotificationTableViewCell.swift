@@ -38,6 +38,15 @@ class FollowNotificationTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.textAlignment = .left
+        return label
+    }()
+    
     private let followButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 4
@@ -54,6 +63,7 @@ class FollowNotificationTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         contentView.addSubview(profilePictureImageView)
         contentView.addSubview(followButton)
+        contentView.addSubview(dateLabel)
         followButton.addTarget(self, action: #selector(didTapFollow), for: .touchUpInside)
     }
     
@@ -86,9 +96,28 @@ class FollowNotificationTableViewCell: UITableViewCell {
         profilePictureImageView.frame = CGRect(x: 10, y: (contentView.height-imageSize)/2, width: imageSize, height: imageSize)
         profilePictureImageView.layer.cornerRadius = imageSize/2
         followButton.sizeToFit()
-        followButton.frame = CGRect(x: contentView.width-followButton.width-24, y: (contentView.height - followButton.height)/2, width: followButton.width + 14, height: followButton.height)
-        let labelSize = label.sizeThatFits(CGSize(width: contentView.width-profilePictureImageView.width-followButton.width-44, height: contentView.height))
-        label.frame = CGRect(x: profilePictureImageView.right+10, y: 0, width: labelSize.width, height: contentView.height)
+        
+        let buttonWidth: CGFloat = max(followButton.width, 75)
+        
+        followButton.frame = CGRect(
+            x: contentView.width-buttonWidth-24,
+            y: (contentView.height - followButton.height)/2,
+            width: buttonWidth + 14,
+            height: followButton.height)
+        let labelSize = label.sizeThatFits(CGSize(
+            width: contentView.width-profilePictureImageView.width-buttonWidth-44,
+            height: contentView.height))
+        label.frame = CGRect(
+            x: profilePictureImageView.right+10,
+            y: 0,
+            width: labelSize.width,
+            height: contentView.height-dateLabel.height)
+        dateLabel.sizeToFit()
+        dateLabel.frame = CGRect(
+            x: profilePictureImageView.right+10,
+            y: contentView.height-dateLabel.height-2,
+            width: dateLabel.width,
+            height: dateLabel.height)
     }
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -96,6 +125,7 @@ class FollowNotificationTableViewCell: UITableViewCell {
         profilePictureImageView.image = nil
         followButton.setTitle(nil, for: .normal)
         followButton.backgroundColor = nil
+        dateLabel.text = nil
     }
     
     public func configure(with viewModel: FollowNotificationCellViewModel){
@@ -104,5 +134,6 @@ class FollowNotificationTableViewCell: UITableViewCell {
         profilePictureImageView.sd_setImage(with: viewModel.profilePictureUrl, completed: nil)
         isFollowing = viewModel.isCurrentUserFollowing
         updateButton()
+        dateLabel.text = viewModel.date
     }
 }
