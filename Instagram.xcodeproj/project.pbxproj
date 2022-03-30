@@ -52,6 +52,10 @@
 		751A971827A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751A971727A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift */; };
 		755AECA227BD1BC000EE2D39 /* NotificationCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755AECA127BD1BC000EE2D39 /* NotificationCellType.swift */; };
 		755AECA427BD1BFE00EE2D39 /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755AECA327BD1BFE00EE2D39 /* NotificationCellViewModel.swift */; };
+		755DCEE627F31304006FBE17 /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DCEE527F31304006FBE17 /* ProfileHeaderCollectionReusableView.swift */; };
+		755DCEE827F313D0006FBE17 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DCEE727F313D0006FBE17 /* ProfileHeaderViewModel.swift */; };
+		755DCEEA27F46C51006FBE17 /* ProfileHeaderCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DCEE927F46C51006FBE17 /* ProfileHeaderCountView.swift */; };
+		755DCEEC27F474D5006FBE17 /* ProfileHeaderCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755DCEEB27F474D5006FBE17 /* ProfileHeaderCountViewModel.swift */; };
 		75C5729027B6648400F2F6E4 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5728F27B6648400F2F6E4 /* SearchResultsViewController.swift */; };
 		75C5729327B6A12900F2F6E4 /* FollowNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5729227B6A12900F2F6E4 /* FollowNotificationTableViewCell.swift */; };
 		75C5729527B6A15D00F2F6E4 /* LikeNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5729427B6A15D00F2F6E4 /* LikeNotificationTableViewCell.swift */; };
@@ -110,6 +114,10 @@
 		751A971727A423D70021F4C5 /* PostDateTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDateTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		755AECA127BD1BC000EE2D39 /* NotificationCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellType.swift; sourceTree = "<group>"; };
 		755AECA327BD1BFE00EE2D39 /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
+		755DCEE527F31304006FBE17 /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		755DCEE727F313D0006FBE17 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
+		755DCEE927F46C51006FBE17 /* ProfileHeaderCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCountView.swift; sourceTree = "<group>"; };
+		755DCEEB27F474D5006FBE17 /* ProfileHeaderCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCountViewModel.swift; sourceTree = "<group>"; };
 		75C5728F27B6648400F2F6E4 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		75C5729227B6A12900F2F6E4 /* FollowNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		75C5729427B6A15D00F2F6E4 /* LikeNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeNotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +212,8 @@
 				75EC4812279AE753007FF04A /* SignInHeaderView.swift */,
 				751A96FC279ED0220021F4C5 /* IGTextField.swift */,
 				75116A4727AD4B6D00BA0086 /* PhotoCollectionViewCell.swift */,
+				755DCEE527F31304006FBE17 /* ProfileHeaderCollectionReusableView.swift */,
+				755DCEE927F46C51006FBE17 /* ProfileHeaderCountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +228,8 @@
 				751A970627A40C8F0021F4C5 /* PostCaptionCollectionViewCellViewModel.swift */,
 				751A970827A40CC70021F4C5 /* PostDateTimeCollectionViewCellViewModel.swift */,
 				755AECA327BD1BFE00EE2D39 /* NotificationCellViewModel.swift */,
+				755DCEE727F313D0006FBE17 /* ProfileHeaderViewModel.swift */,
+				755DCEEB27F474D5006FBE17 /* ProfileHeaderCountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -424,11 +436,13 @@
 				7508BB892799EA3D00735A2D /* CaptionViewController.swift in Sources */,
 				751A971427A423AE0021F4C5 /* PostLikesCollectionViewCell.swift in Sources */,
 				7508BB822799E62900735A2D /* TabBarViewController.swift in Sources */,
+				755DCEE627F31304006FBE17 /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				7508BB972799EADD00735A2D /* Notification.swift in Sources */,
 				75C5729927B6A27500F2F6E4 /* NotificationsManager.swift in Sources */,
 				7508BB9D2799EB1100735A2D /* StorageManager.swift in Sources */,
 				755AECA227BD1BC000EE2D39 /* NotificationCellType.swift in Sources */,
 				7508BB8B2799EA5000735A2D /* ListViewController.swift in Sources */,
+				755DCEEC27F474D5006FBE17 /* ProfileHeaderCountViewModel.swift in Sources */,
 				751A971027A423560021F4C5 /* PostCollectionViewCell.swift in Sources */,
 				75C5729727B6A18A00F2F6E4 /* CommentNotificationTableViewCell.swift in Sources */,
 				7508BB8D2799EA5D00735A2D /* PostViewController.swift in Sources */,
@@ -455,6 +469,8 @@
 				7508BB952799EAC500735A2D /* Relationship.swift in Sources */,
 				75116A4627AD434800BA0086 /* PostEditViewController.swift in Sources */,
 				75C5729527B6A15D00F2F6E4 /* LikeNotificationTableViewCell.swift in Sources */,
+				755DCEEA27F46C51006FBE17 /* ProfileHeaderCountView.swift in Sources */,
+				755DCEE827F313D0006FBE17 /* ProfileHeaderViewModel.swift in Sources */,
 				7508BB932799EAAD00735A2D /* Post.swift in Sources */,
 				751A970727A40C8F0021F4C5 /* PostCaptionCollectionViewCellViewModel.swift in Sources */,
 				7508BBA12799EB3F00735A2D /* HapticManager.swift in Sources */,
