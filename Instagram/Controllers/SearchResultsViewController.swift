@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchResultsViewControllerDelegate: AnyObject {
-    func SearchResultsViewControllerDidSelectResult(_ vc: SearchResultsViewController, didselectResultWith user: User)
+    func searchResultsViewControllerDidSelectResult(_ vc: SearchResultsViewController, didselectResultWith user: User)
 }
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
@@ -17,13 +17,15 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     public weak var delegate: SearchResultsViewControllerDelegate?
     
+    public var didSelectRow: ((User) -> ())?
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.isHidden = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -49,6 +51,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.SearchResultsViewControllerDidSelectResult(self, didselectResultWith: users[indexPath.row])
+        delegate?.searchResultsViewControllerDidSelectResult(self, didselectResultWith: users[indexPath.row])
     }
 }
